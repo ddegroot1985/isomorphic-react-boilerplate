@@ -1,0 +1,22 @@
+body {
+    background-color: #aaa;
+}
+
+.wrapper {
+    display: flex;
+
+    main {
+        flex: 2 0 0;
+    }
+
+    aside {
+        flex: 1 0 0;
+    }
+}
+
+.image-bg {
+    background-image: url('../images/react-logo.svg');
+    background-repeat: no-repeat;
+    width: 200px;
+    height: 200px;
+}

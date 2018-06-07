@@ -1,0 +1,14 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    "files.exclude": {
+        ".babelrc": false,
+        ".eslintrc.js": false,
+        ".gitignore": false,
+        ".sass-lint.yml": false,
+        ".vscode": false,
+        "**/node_modules/": false,
+        "dist": false,
+        "package-lock.json": false,
+        "package.json": false
+    }
+}

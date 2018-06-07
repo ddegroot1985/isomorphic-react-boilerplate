@@ -1,7 +1,8 @@
 {
-  "name": "react-ssr-test",
+  "name": "isomorphic-react-boilerplate",
   "version": "1.0.0",
-  "private": true,
+  "author": "Danny de Groot",
+  "homepage": "http://www.orbitwebsolutions.net",
   "scripts": {
     "clean": "rimraf ./dist/*",
     "dev": "npm run clean && webpack -w --config webpack/webpack.dev.js --progress",

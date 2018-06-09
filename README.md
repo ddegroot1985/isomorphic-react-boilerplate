@@ -10,6 +10,12 @@ Async data fetched on the server is not also fetched in the browser.
 * prod - build a production build
 * start - start the server (requires dev or prod to be run first)
 
+# Production
+In production a different port can be used other than the default port 3000.
+Also when running the project in production NODE_ENV should be set to production.
+
+`NODE_ENV=production PORT=2500 node ./dist/server.js`
+
 # Main frameworks and libaries
 Webpack, React, Redux, React Router, Express
 

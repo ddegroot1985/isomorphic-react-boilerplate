@@ -18,7 +18,12 @@ const browserConfig = {
             {
                 test: /\.js?x$/,
                 exclude: /node_modules/,
-                use: { loader: 'babel-loader' }
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        forceEnv: 'browser'
+                    }
+                }
             },
             {
                 test: /\.(jpe?g|png|gif|svg)$/,
@@ -60,7 +65,12 @@ const serverConfig = {
             {
                 test: /\.js?x$/,
                 exclude: /node_modules/,
-                use: { loader: 'babel-loader' }
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        forceEnv: 'server'
+                    }
+                }
             }
         ]
     },

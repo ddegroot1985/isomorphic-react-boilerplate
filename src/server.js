@@ -11,33 +11,32 @@ const server = express();
 
 server.use(express.static(path.resolve(__dirname, 'public')));
 
-server.get('*', (req, res) => {
-    serverRenderer(req.url)
-        .then((serverRender) => {
-            // Handle redirects
-            if (serverRender.redirectUrl) {
-                res.redirect(serverRender.redirectUrl);
-            } else {
-                res.status(serverRender.statusCode);
+server.get('*', async (req, res) => {
+    const serverRender = await serverRenderer(req.url);
 
-                // Inject initial redux state
-                let parsedHtml = htmlTemplate.replace(
-                    /<body.*>/i,
-                    (match) => {
-                        return `
-                            ${match}
-                            <script>
-                                window.initialReduxState = ${JSON.stringify(serverRender.globals.initialReduxState)}
-                            </script>`;
-                    }
-                );
+    // Handle redirects
+    if (serverRender.redirectUrl) {
+        res.redirect(serverRender.redirectUrl);
+    } else {
+        res.status(serverRender.statusCode);
 
-                // Inject rendered html
-                parsedHtml = parsedHtml.replace('<!-- App -->', serverRender.html);
-
-                res.send(parsedHtml);
+        // Inject initial redux state
+        let parsedHtml = htmlTemplate.replace(
+            /<body.*>/i,
+            (match) => {
+                return `
+                    ${match}
+                    <script>
+                        window.initialReduxState = ${JSON.stringify(serverRender.globals.initialReduxState)}
+                    </script>`;
             }
-        });
+        );
+
+        // Inject rendered html
+        parsedHtml = parsedHtml.replace('<!-- App -->', serverRender.html);
+
+        res.send(parsedHtml);
+    }
 });
 
 const port = 3000;

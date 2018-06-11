@@ -23,16 +23,18 @@ const browserConfig = {
             {
                 test: /\.js?x$/,
                 exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        forceEnv: 'browser'
-                    }
+                loader: 'babel-loader',
+                options: {
+                    forceEnv: 'browser'
                 }
             },
             {
                 test: /\.(jpe?g|png|gif|svg)$/,
-                use: 'file-loader?name=images/[name].[ext]'
+                loader: 'file-loader',
+                options: {
+                    name: '[path][name].[ext]',
+                    context: 'src'
+                }
             }
         ]
     },
@@ -63,18 +65,26 @@ const serverConfig = {
     },
     output: {
         path: path.join(__dirname, '../dist'),
-        filename: '[name].js'
+        filename: '[name].js',
+        publicPath: '/'
     },
     module: {
         rules: [
             {
                 test: /\.js?x$/,
                 exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        forceEnv: 'server'
-                    }
+                loader: 'babel-loader',
+                options: {
+                    forceEnv: 'server'
+                }
+            },
+            {
+                test: /\.(jpe?g|png|gif|svg)$/,
+                loader: 'file-loader',
+                options: {
+                    name: '[path][name].[ext]',
+                    context: 'src',
+                    emitFile: false
                 }
             }
         ]

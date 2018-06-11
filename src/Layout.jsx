@@ -2,6 +2,7 @@ import React from 'react';
 import { renderRoutes } from 'react-router-config';
 import { Link } from 'react-router-dom';
 import { route as routePropType } from 'react-router-prop-types';
+import reactLogoSrc from './assets/images/react-logo.svg';
 import { browserContext as browserContextPropType, store as storePropType } from './utilities/customPropTypes';
 
 const Layout = ({ route, store, browserContext }) => {
@@ -17,7 +18,7 @@ const Layout = ({ route, store, browserContext }) => {
                 <aside>
                     {/* These images are here to prove webpack loads in the images properly. */}
                     <div className="image-bg" />
-                    <img src="/images/react-logo.svg" alt="" />
+                    <img src={reactLogoSrc} alt="" />
                 </aside>
             </div>
         </div>

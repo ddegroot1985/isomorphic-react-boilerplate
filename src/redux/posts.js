@@ -1,17 +1,16 @@
-import { createAction } from 'redux-actions';
+import { createAction, handleActions } from 'redux-actions';
 import request from '../utilities/request';
 
+const defaultState = [];
+
 // Reducer
-export default function reducer(state = [], action) {
-    switch (action.type) {
-        case 'GET_POSTS_FULFILLED':
-            return action.payload;
-        default:
-            return state;
+export default handleActions({
+    POSTS_GET_FULFILLED: (state, action) => {
+        return action.payload;
     }
-}
+}, defaultState);
 
 // Action Creators
-export const getPosts = createAction('GET_POSTS', () => {
+export const getPosts = createAction('POSTS_GET', () => {
     return request.getJson('posts');
 });

@@ -1,20 +1,20 @@
-import { createAction } from 'redux-actions';
+import { createAction, handleActions } from 'redux-actions';
 import { data } from './users';
 
+const defaultState = null;
+
 // Reducer
-export default function reducer(state = null, action) {
-    switch (action.type) {
-        case 'GET_USER_DETAILS_FULFILLED':
-            return action.payload;
-        case 'GET_USER_DETAILS_REJECTED':
-            return { error: action.payload.message };
-        default:
-            return state;
+export default handleActions({
+    USER_DETAILS_GET_FULFILLED: (state, action) => {
+        return action.payload;
+    },
+    USER_DETAILS_GET_REJECTED: (state, action) => {
+        return { error: action.payload.message };
     }
-}
+}, defaultState);
 
 // Action Creators
-export const getUserDetails = createAction('GET_USER_DETAILS', (id) => {
+export const getUserDetails = createAction('USER_DETAILS_GET', (id) => {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             if (id < 4) {

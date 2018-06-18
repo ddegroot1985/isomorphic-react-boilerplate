@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { match as matchPropType } from 'react-router-prop-types';
 import { bindActionCreators } from 'redux';
-import { getUserDetails } from '../redux/userDetails';
+import { clearUserDetails, getUserDetails } from '../redux/userDetails';
 
 class UserDetails extends React.Component {
     static fetchInitialData(dispatch, match) {
@@ -16,6 +16,9 @@ class UserDetails extends React.Component {
         if (prevId !== newId) {
             this.props.getUserDetails(newId);
         }
+    }
+    componentWillUnmount() {
+        this.props.clearUserDetails();
     }
     render() {
         const { userDetails } = this.props;
@@ -41,6 +44,7 @@ class UserDetails extends React.Component {
 
 UserDetails.propTypes = {
     getUserDetails: PropTypes.func.isRequired,
+    clearUserDetails: PropTypes.func.isRequired,
     match: matchPropType.isRequired,
     userDetails: PropTypes.shape({
         id: PropTypes.number,
@@ -57,5 +61,5 @@ UserDetails.defaultProps = {
 export default connect((state) => {
     return { userDetails: state.userDetails };
 }, (dispatch) => {
-    return bindActionCreators({ getUserDetails }, dispatch);
+    return bindActionCreators({ getUserDetails, clearUserDetails }, dispatch);
 })(UserDetails);

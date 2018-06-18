@@ -10,6 +10,9 @@ export default handleActions({
     },
     USER_DETAILS_GET_REJECTED: (state, action) => {
         return { error: action.payload.message };
+    },
+    USER_DETAILS_CLEAR: () => {
+        return defaultState;
     }
 }, defaultState);
 
@@ -31,3 +34,5 @@ export const getUserDetails = createAction('USER_DETAILS_GET', (id) => {
         }, 1000);
     });
 });
+
+export const clearUserDetails = createAction('USER_DETAILS_CLEAR');

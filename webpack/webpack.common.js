@@ -21,7 +21,7 @@ const browserConfig = {
     module: {
         rules: [
             {
-                test: /\.js?x$/,
+                test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
                 options: {
@@ -71,7 +71,7 @@ const serverConfig = {
     module: {
         rules: [
             {
-                test: /\.js?x$/,
+                test: /\.jsx?$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader',
                 options: {
